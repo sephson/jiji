@@ -1,0 +1,73 @@
+.hero {
+  background: linear-gradient(160.29deg, #3db83a 0.67%, #378705 100.93%);
+  height: 23rem;
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  position: relative;
+  padding: 0 10px;
+}
+
+.hero-leftside,
+.hero-rightside {
+  padding-top: 6.5rem;
+}
+
+.hero-middle-search {
+  padding-top: 8rem;
+}
+
+.hero-search {
+  outline: none;
+  border: none;
+  padding: 1rem;
+  color: grey;
+  width: 100%;
+  height: 3rem;
+}
+
+.hero-location-finder {
+  margin-bottom: 5rem;
+  font-size: 1.2rem;
+  font-weight: 300;
+  display: flex;
+  gap: 0.3rem;
+  justify-content: center;
+}
+
+.nigerian-location {
+  background-color: #333;
+  font-size: 0.8rem;
+  padding: 0.2rem;
+  border-radius: 0.3rem;
+  align-self: self-end;
+}
+
+@media screen and (max-width: 1080px) {
+  .hero {
+    padding: 0rem 10rem;
+    display: block;
+  }
+  .hero-leftside,
+  .hero-rightside {
+    display: none;
+  }
+
+  .hero-location-finder {
+    text-align: center;
+  }
+  .hero-search {
+    outline: none;
+    border: none;
+    padding: 1rem;
+    color: grey;
+    width: 100%;
+    height: 3rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .hero {
+    padding: 0rem 0.7rem;
+  }
+}
