@@ -1,0 +1,20 @@
+.main-body {
+  background-color: rgba(238, 242, 244, 0.5);
+  padding: 1rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .main-body {
+    padding: 1rem 2rem;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .main-body {
+    padding: 1rem 0.7rem;
+  }
+}
