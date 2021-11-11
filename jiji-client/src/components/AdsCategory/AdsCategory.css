@@ -1,9 +1,11 @@
 .categories {
   background-color: #fff;
-  width: 15rem;
+  width: 17rem;
   padding: 1rem;
-  box-shadow: 2px 1px #888888;
+  box-shadow: 5px 2px 7px #b6b6b6;
+  height: 32rem;
 }
+
 
 .tag-images {
   width: 10%;
@@ -19,4 +21,15 @@
 
 .ad-tag {
   color: grey;
+}
+
+@media screen and (max-width: 1000px) {
+  .categories,
+  .cat-containers,
+  .tag-images,
+  .ad-numbers {
+    display: none;
+  }
+
+  
 }

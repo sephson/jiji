@@ -1,0 +1,41 @@
+.footer {
+  background-color: #3db83a;
+  height: 24rem;
+  margin-top: -0.4rem;
+  padding: 0 2rem;
+}
+
+.footer-sections {
+  padding-top: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  color: white;
+}
+
+.foot-text,
+.foot-head {
+  margin-bottom: 0.5rem;
+}
+
+.foot-head,
+.copyright {
+  color: #378705;
+  font-weight: bold;
+}
+
+.copyright {
+  text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+  .footer {
+    height: auto;
+    margin-top: -0.4rem;
+    padding: 0 2rem;
+  }
+
+  .footer-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}

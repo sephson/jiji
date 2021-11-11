@@ -12,15 +12,15 @@ import nine from "../../pic/9.jpg";
 
 const Trending = () => {
   const trends = [
-    { name: "Honda Civic", price: "#800,000", picture: one },
-    { name: "Honda Civic, 2020", price: "#800,000", picture: two },
-    { name: "Peugeot 204", price: "#1,800,000", picture: three },
-    { name: "Honda Civic", price: "#800,000", picture: four },
-    { name: "Honda Civic, 2020", price: "#800,000", picture: five },
-    { name: "Peugeot 204", price: "#1,800,000", picture: six },
-    { name: "Honda Civic", price: "#800,000", picture: seven },
-    { name: "Honda Civic, 2020", price: "#800,000", picture: eight },
-    { name: "Peugeot 204", price: "#1,800,000", picture: nine },
+    { name: "Honda Civic", price: "800,000", picture: one },
+    { name: "Honda Civic, 2020", price: "800,000", picture: two },
+    { name: "Peugeot 204", price: "1,800,000", picture: three },
+    { name: "Honda Civic", price: "800,000", picture: four },
+    { name: "Honda Civic, 2020", price: "800,000", picture: five },
+    { name: "Peugeot 204", price: "1,800,000", picture: six },
+    { name: "Honda Civic", price: "800,000", picture: seven },
+    { name: "Honda Civic, 2020", price: "800,000", picture: eight },
+    { name: "Peugeot 204", price: "1,800,000", picture: nine },
   ];
   return (
     <div className="trends">
@@ -28,8 +28,8 @@ const Trending = () => {
         return (
           <div className="trend-container">
             <img className="trend-image" src={trend.picture} alt="trend art" />
-            <p>{trend.name}</p>
-            <p>{trend.price}</p>
+            <p className="trend-text">{trend.name}</p>
+            <p className="trend-price">₦{trend.price}</p>
           </div>
         );
       })}

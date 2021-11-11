@@ -7,6 +7,23 @@
 .trend-container {
   text-align-last: center;
   margin-bottom: auto;
+  background-color: white;
+  border-radius: 4px;
+  padding-bottom: 1rem;
+}
+
+.trend-text,
+.trend-price {
+  text-align-last: start;
+  padding-left: 0.5rem;
+}
+
+.trend-text {
+  margin: 0.5rem 0;
+}
+
+.trend-price {
+  color: #378705;
 }
 
 .trend-image {

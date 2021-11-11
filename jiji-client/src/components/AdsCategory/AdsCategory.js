@@ -22,6 +22,7 @@ const AdsCategory = () => {
     { tag: "Books", adpic: eight, number: "123,908" },
     { tag: "Equipments", adpic: nine, number: "123,908" },
   ];
+
   return (
     <div className="categories">
       {ads.map((ad) => {
@@ -30,7 +31,7 @@ const AdsCategory = () => {
             <img className="tag-images" alt="cat-tags" src={ad.adpic} />
             <div>
               <p className="ad-tag">{ad.tag}</p>
-              <p>{ad.number} ads</p>
+              <p className="ad-numbers">{ad.number} ads</p>
             </div>
           </div>
         );
