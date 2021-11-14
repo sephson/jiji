@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Item = require("../controllers/item.controller");
-
+const { protects } = require("../middleware/auth");
 const {
   create,
   allItemsBySeller,
@@ -14,7 +14,7 @@ const {
   trackBuyerInterests,
 } = Item;
 
-router.route("/").post(create).get(allItems);
+router.route("/").post(create).get(protects, allItems);
 router.route("/:sellerId/all").get(allItemsBySeller);
 router.route("/:itemId/one").get(itemDetails);
 router
