@@ -1,0 +1,78 @@
+body.active-modal {
+  overflow-y: hidden;
+}
+
+.modal,
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 1;
+}
+
+.closebtn {
+  text-align: end;
+}
+
+.overlay {
+  background: rgba(49, 49, 49, 0.8);
+}
+.modal-content {
+  position: absolute;
+  top: 52.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #fff;
+  padding: 1.3rem;
+  border-radius: 3px;
+  z-index: 1;
+  gap: 0.3rem;
+  display: grid;
+  color: #464b4f;
+  width: 25rem;
+}
+
+.input-check {
+  align-self: center;
+}
+
+.reg-input {
+  padding: 1rem;
+  border: solid 1px #808080a1;
+  border-radius: 2px;
+  outline: none;
+}
+
+.acctsignin,
+.rules-check {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.reg-btn {
+  padding: 1rem;
+  background-color: #3db83a;
+  color: white;
+  border: none;
+}
+
+.rules-check {
+  color: #3db83a;
+}
+@media screen and (max-width: 1000px) {
+  .modal-content {
+    top: 55.5%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .modal-content {
+    width: -webkit-fill-available;
+    height: auto;
+  }
+}
