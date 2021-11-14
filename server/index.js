@@ -7,8 +7,7 @@ const connectDB = require("./db/db");
 connectDB();
 const userRoute = require("./route/users.routes");
 const itemRoute = require("./route/item.routes");
-// const uploadRoute = require("./routes/uploadRoute");
-// const requestRoute = require("./routes/requestRoute");
+const uploadRoute = require("./route/upload.routes");
 const errorHandler = require("./middleware/error");
 
 app.use(morgan("dev"));
@@ -22,8 +21,7 @@ app.use(
 
 app.use("/api/user", userRoute);
 app.use("/api/item", itemRoute);
-// app.use("/api/upload", uploadRoute);
-// app.use("/api/request", requestRoute);
+app.use("/api/upload", uploadRoute);
 app.use(errorHandler);
 
 app.listen(5000, () => console.log(`Server is running on 5000`));

@@ -39,7 +39,9 @@ exports.itemDetails = async (req, res) => {
   const { itemId } = req.params;
   try {
     const item = await Item.findById(itemId);
-    res.status(200).json({ success: true, item });
+    item
+      ? res.status(200).json({ success: true, item })
+      : res.status(404).json({ success: false, message: "not found" });
   } catch (error) {
     res.status(500).json({ success: false, error });
   }
