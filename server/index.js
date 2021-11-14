@@ -6,7 +6,7 @@ const fileUpload = require("express-fileupload");
 const connectDB = require("./db/db");
 connectDB();
 const userRoute = require("./route/users.routes");
-const itemRoute = require("./routes/item.routes");
+const itemRoute = require("./route/item.routes");
 // const uploadRoute = require("./routes/uploadRoute");
 // const requestRoute = require("./routes/requestRoute");
 const errorHandler = require("./middleware/error");

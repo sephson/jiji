@@ -7,6 +7,11 @@ const itemSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    sellerId: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
+    },
     description: {
       type: String,
       required: true,
@@ -18,6 +23,10 @@ const itemSchema = new mongoose.Schema(
     price: {
       type: Number,
       required: true,
+    },
+    is_sold: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }
