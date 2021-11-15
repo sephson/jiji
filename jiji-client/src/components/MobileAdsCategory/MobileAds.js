@@ -9,6 +9,8 @@ import seven from "../../pic/home.png";
 import eight from "../../pic/electronics.png";
 import nine from "../../pic/vehicles.png";
 import "./MobileAds.css";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const MobileAds = () => {
   const ads = [
@@ -22,11 +24,20 @@ const MobileAds = () => {
     { tag: "Books", adpic: eight, number: "123,908" },
     { tag: "Equipments", adpic: nine, number: "123,908" },
   ];
+  const userRegister = useSelector((state) => state.userRegister);
+  const userLogin = useSelector((state) => state.userLoginReducer);
+
   return (
     <div className="smaller-categories">
       <div className="post-ad">
-        <div className="circle-ad">+</div>
-        <p className="postad-text">Post Ad</p>
+        <Link
+          to={
+            userLogin?.userInfo || userRegister?.userInfo ? "/post-ad" : "/login"
+          }
+        >
+          <div className="circle-ad">+</div>
+          <p className="postad-text">Post Ad</p>
+        </Link>
       </div>
 
       {ads.map((ad) => {

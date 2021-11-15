@@ -26,7 +26,9 @@ const Navbar = () => {
               <Link to="/register">Registration </Link>
             </p>
 
-            <button className="nav-cta-btn">SELL</button>
+            <button className="nav-cta-btn">
+              <Link to={userInfo ? `/post-ad` : `/login`}>SELL</Link>
+            </button>
           </div>
         )}
       </nav>

@@ -6,9 +6,12 @@ import {
   userRegisterReducer,
 } from "./reducers/users.reducers";
 
+import { postAdReducer } from "./reducers/sell.reducer";
+
 const reducer = combineReducers({
   userRegister: userRegisterReducer,
   userLogin: userLoginReducer,
+  postAd: postAdReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
