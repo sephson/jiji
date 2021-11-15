@@ -31,7 +31,7 @@
     padding: 1rem;
   }
   .circle-ad {
-    background-color: red;
+    background-color: #e5554b;
     color: white;
     border-radius: 4rem;
     text-align-last: center;
@@ -41,7 +41,7 @@
     margin-bottom: 1rem;
   }
   .postad-text {
-    color: red;
+    color: #e5554b;
     text-align: center;
   }
 }
@@ -59,6 +59,15 @@
   .smaller-categories {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 0.2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media screen and (max-width: 270px) {
+  .smaller-categories {
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 0.2rem;
     margin-bottom: 2rem;
   }

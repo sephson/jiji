@@ -1,13 +1,20 @@
 import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "../src/pages/Home/Home";
-import Register from "../src/pages/Register/Register";
+import Registration from "./pages/Regis-Login/Registration";
+import LoginModal from "./pages/Regis-Login/Login";
 
 function App() {
   return (
-    <div className="App">
-      <Home />
-      <Register />
-    </div>
+    <>
+      <Router>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/register" component={Registration} />
+          <Route path="/login" component={LoginModal} />
+        </Switch>
+      </Router>
+    </>
   );
 }
 

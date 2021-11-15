@@ -7,11 +7,11 @@ const userSchema = new mongoose.Schema(
   {
     first_name: {
       type: String,
-      required: true,
+      // required: true,
     },
     last_name: {
       type: String,
-      required: true,
+      // required: true,
     },
     email: {
       type: String,
@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
     },
     state_residence: {
       type: String,
-      required: true,
+      // required: true,
     },
     resetPasswordToken: String,
     resetPasswordExpire: Date,

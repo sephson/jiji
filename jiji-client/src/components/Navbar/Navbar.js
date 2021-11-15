@@ -1,32 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Navbar.css";
-import Modal from "../../components/Modal/Modal";
-const Navbar = () => {
-  const [openModal, setOpenModal] = useState(false);
-  const handleModal = () => {
-    setOpenModal(!openModal);
-  };
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-  //   if (!openModal) {
-  //     document.body.classList.remove("active-modal");
-  //   } else {
-  //     document.body.classList.add("active-modal");
-  //   }
+const Navbar = () => {
+  const userRegister = useSelector((state) => state.userRegister);
+  const { userInfo } = userRegister;
   return (
     <>
       <nav className="navbar">
         <div className="jiji-logo">jiji.ng</div>
         <p className="nav-text">SELL FASTER, BUY SMARTER</p>
-        <div className="nav-cta">
-          <p className="nav-cta-signin">Sign In </p>
-          <p className="nav-cta-signin">|</p>
-          <p className="nav-cta-signin" onClick={handleModal}>
-            Registration
-          </p>
-          <button className="nav-cta-btn">SELL</button>
-        </div>
+        {userInfo ? (
+          <div className="nav-person">
+            <AccountCircleIcon />
+          </div>
+        ) : (
+          <div className="nav-cta">
+            <p className="nav-cta-signin">
+              <Link to="/login">Sign In </Link>
+            </p>
+            <p className="nav-cta-signin">|</p>
+            <p className="nav-cta-signin">
+              <Link to="/register">Registration </Link>
+            </p>
+
+            <button className="nav-cta-btn">SELL</button>
+          </div>
+        )}
       </nav>
-      {openModal && <Modal closeModal={setOpenModal} />}
     </>
   );
 };

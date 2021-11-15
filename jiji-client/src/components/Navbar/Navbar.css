@@ -46,6 +46,17 @@
   cursor: pointer;
 }
 
+.nav-person {
+  justify-self: flex-end;
+  align-self: center;
+}
+
+a {
+  text-decoration: none;
+  text-decoration-line: none;
+  color: inherit;
+}
+
 @media screen and (max-width: 1000px) {
   .navbar {
     padding: 0.5rem 2rem;
