@@ -33,3 +33,51 @@ export const postAdvert =
       });
     }
   };
+
+export const items = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: "ALLITEMS_REQUEST",
+    });
+
+    const config = {
+      "Content-Type": "application/json",
+    };
+
+    const { data } = await axios.get("api/item", config);
+
+    dispatch({
+      type: "ALLITEMS_SUCCESS",
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: "ALLITEMS_FAILED",
+      payload: error,
+    });
+  }
+};
+
+export const itemDetailsInfo = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "ITEM_DETAILS_REQUEST",
+    });
+
+    const config = {
+      "Content-Type": "application/json",
+    };
+
+    const { data } = await axios.get(`/api/item/${id}/one`, config);
+
+    dispatch({
+      type: "ITEM_DETAILS_SUCCESS",
+      payload: data,
+    });
+  } catch (e) {
+    dispatch({
+      type: "ITEM_DETAILS_FAILED",
+      payload: e,
+    });
+  }
+};

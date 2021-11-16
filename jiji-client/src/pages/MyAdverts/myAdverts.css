@@ -1,0 +1,76 @@
+.myads {
+  margin-top: 5rem;
+  padding: 2rem;
+}
+
+.myads-image {
+  width: 30%;
+  height: 11rem;
+  object-fit: cover;
+}
+
+.empty-ad {
+  text-align-last: center;
+  margin-top: 5rem;
+}
+
+.aa {
+  color: grey;
+}
+.seller-profile {
+  height: max-content;
+  padding: 1rem;
+  box-shadow: 5px 2px 7px #b6b6b6;
+  border-radius: 0.3rem;
+  text-align-last: center;
+}
+
+.icons {
+  display: grid;
+  padding-top: 0.5rem;
+}
+.userprofile {
+  width: 40%;
+  margin-bottom: 0.5rem;
+  border-radius: 5rem;
+}
+
+.main-myads {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  gap: 1.2rem;
+}
+
+.myads-container {
+  display: flex;
+  margin-bottom: 0.5rem;
+  box-shadow: 5px 2px 7px #b6b6b6;
+}
+
+.int-del {
+  display: flex;
+}
+
+@media screen and (max-width: 600px) {
+  .main-myads {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .myads {
+    margin-top: 5rem;
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .main-myads {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .myads {
+    margin-top: 5rem;
+    padding: 0.7rem;
+  }
+}

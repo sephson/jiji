@@ -45,7 +45,6 @@ const Sell = ({ history }) => {
       console.log(err);
     }
   };
-  console.log(image);
   useEffect(() => {
     if (view) {
       const reader = new FileReader();
@@ -67,7 +66,11 @@ const Sell = ({ history }) => {
   }, [history, userInfo]);
 
   const post = useSelector((state) => state.postAd);
-  const { loading, success, error } = post;
+  const { loading, itemInfo, error } = post;
+
+  useEffect(() => {
+    if (itemInfo?.success === true) return (document.location.href = `/adverts`);
+  }, [itemInfo?.success]);
 
   return (
     <>
@@ -119,7 +122,7 @@ const Sell = ({ history }) => {
           )}
         </div>
         <button type="submit" className="reg-btn">
-          POST
+          {loading ? "Loading..." : "POST"}
         </button>
       </form>
     </>

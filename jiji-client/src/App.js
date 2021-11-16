@@ -4,6 +4,8 @@ import Home from "../src/pages/Home/Home";
 import Registration from "./pages/Regis-Login/Registration";
 import LoginModal from "./pages/Regis-Login/Login";
 import Sell from "./pages/Sell/Sell";
+import MyAds from "./pages/MyAdverts/myAdverts";
+import ItemDetail from "./pages/ItemDetails/ItemDetail";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           <Route path="/register" component={Registration} />
           <Route path="/login" component={LoginModal} />
           <Route path="/post-ad" component={Sell} />
+          <Route path="/adverts" component={MyAds} />
+          <Route path="/item/:itemId" component={ItemDetail} />
         </Switch>
       </Router>
     </>

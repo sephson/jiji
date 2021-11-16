@@ -38,7 +38,7 @@ exports.allItemsBySeller = async (req, res) => {
 exports.itemDetails = async (req, res) => {
   const { itemId } = req.params;
   try {
-    const item = await Item.findById(itemId);
+    const item = await Item.findById(itemId).populate("sellerId");
     item
       ? res.status(200).json({ success: true, item })
       : res.status(404).json({ success: false, message: "not found" });
