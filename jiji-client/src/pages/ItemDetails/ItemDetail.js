@@ -5,11 +5,12 @@ import { itemDetailsInfo, showInterest } from "../../actions/sell.action";
 import { useSelector, useDispatch } from "react-redux";
 import { format } from "timeago.js";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
-const ItemDetail = ({ match }) => {
+const ItemDetail = () => {
   const dispatch = useDispatch();
   const detailsItem = useSelector((state) => state.detailsInfo);
-  const { itemId } = match.params;
+  const { itemId } = useParams();
   const { details } = detailsItem;
 
   const userLogin = useSelector((state) => state.userLogin);

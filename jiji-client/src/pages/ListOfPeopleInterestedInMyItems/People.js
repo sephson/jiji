@@ -4,11 +4,12 @@ import Navbar from "../../components/Navbar/Navbar";
 import { itemInterestedPeople } from "../../actions/sell.action";
 import { useSelector, useDispatch } from "react-redux";
 import { format } from "timeago.js";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ReactLoading from "react-loading";
 
-const People = ({ match }) => {
-  const { itemId } = match.params;
+const People = () => {
+  const itemId = useParams().itemId;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,16 +18,22 @@ const People = ({ match }) => {
 
   const pep = useSelector((state) => state.people);
   const { people, loading } = pep;
-//   console.log(people?.interests);
-//   console.log(people?.item);
-//   console.log(people);
+  //   console.log(people?.interests);
+  //   console.log(people?.item);
+  //   console.log(people);
 
   return (
     <div className="people">
       <Navbar />
       <div className="list-people">
         {people?.interests.length === 0 ? (
-          <p style={{ color: "#3db83a", "font-weight": "bold", "margin-bottom":"0.5rem" }}>
+          <p
+            style={{
+              color: "#3db83a",
+              "font-weight": "bold",
+              "margin-bottom": "0.5rem",
+            }}
+          >
             No one has shown interest yet
           </p>
         ) : loading ? (
