@@ -13,9 +13,9 @@ const {
   deleteItem,
   trackBuyerInterests,
   checkInterest,
-  test
+  test,
 } = Item;
-
+router.route("/testtest").get(test);
 router.route("/track").get(protects, trackBuyerInterests);
 router.route("/").post(create).get(allItems);
 router.route("/all-seller-items").get(protects, allItemsBySeller);
@@ -27,5 +27,5 @@ router
   .delete(deleteItem);
 router.route("/show-interest/:itemId").post(protects, showInterestInItem);
 router.route("/:userId/:itemId").get(checkInterest);
-router.route("/testtest").get(test)
+
 module.exports = router;
