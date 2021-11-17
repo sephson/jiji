@@ -3,7 +3,7 @@ import "./Trending.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { items } from "../../actions/sell.action";
-
+import ReactLoading from "react-loading";
 const Trending = () => {
   const dispatch = useDispatch();
   const a = useSelector((state) => state.allItems);
