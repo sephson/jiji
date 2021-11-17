@@ -44,7 +44,7 @@ export const items = () => async (dispatch) => {
       "Content-Type": "application/json",
     };
 
-    const { data } = await axios.get("/item", config);
+    const { data } = await axios.get("api/item", config);
 
     dispatch({
       type: "ALLITEMS_SUCCESS",
