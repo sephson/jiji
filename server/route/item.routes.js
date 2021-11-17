@@ -14,9 +14,9 @@ const {
   trackBuyerInterests,
   checkInterest,
 } = Item;
-router.route("/testtest").get(allItems);
+
 router.route("/track").get(protects, trackBuyerInterests);
-router.route("/").post(create);
+router.route("/").post(create).get(allItems);;
 router.route("/all-seller-items").get(protects, allItemsBySeller);
 router.route("/:itemId/one").get(itemDetails);
 router
