@@ -21,7 +21,7 @@ app.use(
 );
 
 app.use("/api/user", userRoute);
-app.use("/api/item", itemRoute);
+app.use("/item", itemRoute);
 app.use("/api/upload", uploadRoute);
 
 if (process.env.NODE_ENV === "production") {
