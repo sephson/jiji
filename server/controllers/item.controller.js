@@ -159,3 +159,8 @@ exports.checkInterest = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
+
+exports.test = async (req, res) => {
+  res.status(200).json({success: "Api success"})
+}
