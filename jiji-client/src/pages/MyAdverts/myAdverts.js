@@ -62,14 +62,15 @@ const MyAdverts = () => {
           </p>
           <p
             style={{
+              "margin-bottom": "1rem",
               color: "grey",
             }}
           >
             {myAds?.seller?.total} Items
           </p>
-          <p>
+          <button className="reg-btn">
             <Link to="/post-ad">Post Advert</Link>
-          </p>
+          </button>
         </div>
         <div>
           {trends?.length === 0 ? (
