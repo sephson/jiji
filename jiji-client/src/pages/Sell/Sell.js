@@ -73,9 +73,9 @@ const Sell = ({ history }) => {
       return (document.location.href = `/adverts`);
   }, [itemInfo?.success]);
 
-  if(!name || !desc || !image || !price){
-      
+  if (!name || !desc || !image || !price) {
   }
+  console.log(image);
 
   return (
     <>
