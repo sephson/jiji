@@ -1,32 +1,41 @@
-import React from "react";
-import one from "../../pic/1.jpg";
-import two from "../../pic/2.jpg";
-import three from "../../pic/3.jpg";
-import four from "../../pic/4.jpg";
-import five from "../../pic/5.jpg";
-import six from "../../pic/6.jpg";
-import seven from "../../pic/7.jpg";
-import eight from "../../pic/8.jpg";
-import nine from "../../pic/9.jpg";
+import React, { useEffect } from "react";
 import pp from "../../pic/ppp.jpg";
+import { useSelector, useDispatch } from "react-redux";
+import { format } from "timeago.js";
 import Navbar from "../../components/Navbar/Navbar";
 import "./myAdverts.css";
 import AcUnitIcon from "@material-ui/icons/AcUnit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Noads from "../../pic/no-adverts-active.svg";
 import { Link } from "react-router-dom";
-const myAdverts = () => {
-  const trends = [
-    { name: "Honda Civic", price: "800,000", picture: one },
-    { name: "Honda Civic, 2020", price: "800,000", picture: two },
-    { name: "Peugeot 204", price: "1,800,000", picture: three },
-    { name: "Honda Civic", price: "800,000", picture: four },
-    { name: "Honda Civic, 2020", price: "800,000", picture: five },
-    { name: "Peugeot 204", price: "1,800,000", picture: six },
-    { name: "Honda Civic", price: "800,000", picture: seven },
-    { name: "Honda Civic, 2020", price: "800,000", picture: eight },
-    { name: "Peugeot 204", price: "1,800,000", picture: nine },
-  ];
+import {
+  updateItemToSold,
+  deleteItem,
+  sellerItems,
+} from "../../actions/sell.action";
+
+const MyAdverts = () => {
+  const dispatch = useDispatch();
+  const myAds = useSelector((state) => state.seller);
+  const trends = myAds?.seller?.items;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  useEffect(() => {
+    dispatch(sellerItems());
+  }, [dispatch, userInfo?.userId]);
+
+  useEffect(() => {
+    if (!userInfo) return (document.location.href = `/login`);
+  }, [userInfo]);
+
+  const numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  };
+
+  const updatesold = useSelector((state) => state.markSold);
+  console.log(updatesold);
   return (
     <div className="myads">
       <Navbar />
@@ -40,14 +49,28 @@ const myAdverts = () => {
               color: "grey",
             }}
           >
-            Disu Toyin
+            {userInfo?.email}
           </h3>
-          <p style={{ color: "green", "font-weight": "bold" }}>
-            disutj@gmail.com
+          <p
+            style={{
+              "margin-bottom": "1rem",
+              "font-weight": "bold",
+              color: "grey",
+              
+            }}
+          >
+            {userInfo?.first_name} {userInfo?.last_name}
+          </p>
+          <p
+            style={{
+              color: "grey",
+            }}
+          >
+            {myAds?.seller?.total} Items
           </p>
         </div>
         <div>
-          {trends.length === 0 ? (
+          {trends?.length === 0 ? (
             <div className="empty-ad">
               <img src={Noads} alt="no adss art" />
               <h1 style={{ color: "grey", "text-align": "center" }}>
@@ -59,32 +82,53 @@ const myAdverts = () => {
               </h1>
             </div>
           ) : (
-            trends.map((trend) => {
+            trends?.map((trend) => {
               return (
-                <div className="myads-container">
-                  <img
-                    className="myads-image"
-                    src={trend.picture}
-                    alt="trend art"
-                  />
-                  <div className="int-del">
-                    <div>
-                      <p className="trend-text aa">{trend.name}</p>
-                      <p
-                        style={{ "font-weight": "bold" }}
-                        className="trend-price "
-                      >
-                        ₦{trend.price}
-                      </p>
-                      <p className="trend-text aa">Interests: 45</p>
-                      <p className="trend-text aa">Date</p>
-                    </div>
-                    <div className="icons">
-                      <DeleteIcon style={{ color: "green" }} />
-                      <AcUnitIcon className="aa" />
+                <Link to={`/interests/${trend._id}`}>
+                  <div className="myads-container">
+                    <img
+                      className="myads-image"
+                      src={trend.image}
+                      alt="trend art"
+                    />
+                    <div className="int-del">
+                      <div>
+                        <p className="trend-text aa">{trend.name}</p>
+                        <p
+                          style={{ "font-weight": "bold" }}
+                          className="trend-price"
+                        >
+                          ₦{numberWithCommas(trend.price)}
+                        </p>
+                        <p className="trend-text aa">
+                          {format(trend.createdAt)}
+                        </p>
+                        <p className="sold-item">
+                          {trend.is_sold === true && "sold"}
+                        </p>
+                      </div>
+                      <div className="icons">
+                        <DeleteIcon
+                          onClick={() => {
+                            dispatch(deleteItem(trend._id));
+                            document.location.href = "/adverts";
+                          }}
+                          style={{ color: "green", cursor: "pointer" }}
+                        />
+                        <AcUnitIcon
+                          className="aa"
+                          onClick={() => {
+                            dispatch(
+                              updateItemToSold(trend._id, userInfo?.userId)
+                            );
+                            document.location.href = "/adverts";
+                          }}
+                          style={{ cursor: "pointer" }}
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               );
             })
           )}
@@ -94,4 +138,4 @@ const myAdverts = () => {
   );
 };
 
-export default myAdverts;
+export default MyAdverts;

@@ -3,6 +3,7 @@ const Item = require("../model/item.model");
 const Interested = require("../model/interested.model");
 const ErrorResponse = require("../utils/errorResponse");
 const { deleteOne } = require("../model/users.model");
+const { protects } = require("../middleware/auth");
 
 exports.create = async (req, res) => {
   const { name, sellerId, price, description, image } = req.body;
@@ -26,7 +27,7 @@ exports.create = async (req, res) => {
 };
 
 exports.allItemsBySeller = async (req, res) => {
-  const { sellerId } = req.params;
+  const sellerId = req.user._id;
   try {
     const items = await Item.find({ sellerId });
     res.status(200).json({ success: true, total: items.length, items });
@@ -47,12 +48,16 @@ exports.itemDetails = async (req, res) => {
   }
 };
 
-exports.itemDetailsWithInterestedBuyers = async (req, res) => {
+exports.itemDetailsWithInterestedBuyers = async (req, res, next) => {
   const { itemId } = req.params;
-  const { sellerId } = req.body;
+  const { _id } = req.user;
+
   try {
     const item = await Item.findById(itemId);
-    if (item.sellerId == sellerId) {
+    const a = JSON.stringify(item.sellerId);
+    const b = JSON.stringify(_id);
+
+    if (a == b) {
       const interests = await Interested.find({ itemId }).populate(
         "interestedBuyer",
         "email"
@@ -64,9 +69,7 @@ exports.itemDetailsWithInterestedBuyers = async (req, res) => {
         interests,
       });
     } else {
-      res
-        .status(403)
-        .json({ success: false, message: "you can't view interested buyers" });
+      next(new ErrorResponse("Not authorized to access this router", 401));
     }
   } catch (error) {
     res.status(500).json({ success: false, error });
@@ -75,24 +78,17 @@ exports.itemDetailsWithInterestedBuyers = async (req, res) => {
 
 exports.showInterestInItem = async (req, res) => {
   const { itemId } = req.params;
-  const { interestedBuyer } = req.body;
+  const interestedBuyer = req.user._id;
   try {
     const checkItem = await Item.findOne({ _id: itemId });
     if (!checkItem) {
-      res.status(401).json({ success: false, message: "user doesnt exist" });
+      res.status(401).json({ success: false, message: "item doesnt exist" });
     } else {
-      if (checkItem.sellerId !== interestedBuyer) {
-        const interest = await Interested.create({
-          itemId,
-          interestedBuyer,
-        });
-        res.status(201).json({ success: true, interest });
-      } else {
-        res.status(403).json({
-          success: false,
-          message: "you can't show interest in an item you're selling",
-        });
-      }
+      const interest = await Interested.create({
+        itemId,
+        interestedBuyer,
+      });
+      res.status(201).json({ success: true, interest });
     }
   } catch (error) {
     res.status(500).json(error);
@@ -101,11 +97,10 @@ exports.showInterestInItem = async (req, res) => {
 
 exports.markItemAsSold = async (req, res) => {
   const { itemId } = req.params;
-  const { userId } = req.body;
 
   try {
     const item = await Item.findOne({ _id: itemId });
-    if (item.sellerId == userId) {
+    if (item) {
       if (item.is_sold === false) {
         await item.updateOne({ $set: { is_sold: true } });
         res.status(200).json({ success: true, message: "updated to sold" });
@@ -114,7 +109,7 @@ exports.markItemAsSold = async (req, res) => {
         res.status(200).json({ success: true, message: "updated to not sold" });
       }
     } else {
-      res.status(403).json({ success: false, message: "you cant mark this" });
+      res.status(404).json({ success: false, message: "item doesnt exist" });
     }
   } catch (error) {
     res.status(500).json({ success: false, error });
@@ -123,9 +118,8 @@ exports.markItemAsSold = async (req, res) => {
 
 exports.deleteItem = async (req, res) => {
   const { itemId } = req.params;
-  const { userId } = req.body;
   try {
-    await Item.findOneAndDelete({ _id: itemId, sellerId: userId });
+    await Item.findOneAndDelete({ _id: itemId });
     res.status(200).json({ success: true, message: "successfully deleted" });
   } catch (error) {
     res.status(500).json({ success: false, error });
@@ -142,17 +136,26 @@ exports.allItems = async (req, res) => {
 };
 
 exports.trackBuyerInterests = async (req, res) => {
-  const { userId } = req.params;
-
+  const userId = req.user._id;
   try {
-    const myInterests = await Interested.find({
-      interestedBuyer: userId,
-      is_sold: false,
-    }).populate("itemId");
-    res
-      .status(200)
-      .json({ success: true, total: myInterests.length, myInterests });
+    const items = await Interested.find({ interestedBuyer: userId }).populate(
+      "itemId"
+    );
+    res.status(200).json({ success: true, total: items.length, items });
   } catch (error) {
     res.status(500).json({ success: false, error });
+  }
+};
+
+exports.checkInterest = async (req, res) => {
+  const { userId, itemId } = req.params;
+  try {
+    const interest = await Interested.findOne({
+      itemId,
+      interestedBuyer: userId,
+    });
+    interest ? res.status(200).json(true) : res.status(200).json(false);
+  } catch (error) {
+    res.status(500).json(error);
   }
 };

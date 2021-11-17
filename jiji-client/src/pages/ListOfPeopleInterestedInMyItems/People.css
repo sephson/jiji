@@ -1,0 +1,42 @@
+.people {
+  padding: 0 2rem;
+}
+
+.list-people {
+  background-color: white;
+  margin-top: 5rem;
+}
+
+.list-people-cont {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem 1rem;
+  background-color: #3db83a;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+@media screen and (max-width: 700px) {
+  .people {
+    padding: 0 0.7rem;
+  }
+
+  .list-people-cont {
+    padding: 1rem 1rem;
+    background-color: #3db83a;
+    margin-bottom: 1rem;
+    color: white;
+    gap: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .people {
+    padding: 0 0.7rem;
+  }
+
+  .list-people-cont {
+    display: grid;
+  }
+}

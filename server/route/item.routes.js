@@ -12,16 +12,18 @@ const {
   markItemAsSold,
   deleteItem,
   trackBuyerInterests,
+  checkInterest,
 } = Item;
 
+router.route("/track").get(protects, trackBuyerInterests);
 router.route("/").post(create).get(allItems);
-router.route("/:sellerId/all").get(allItemsBySeller);
+router.route("/all-seller-items").get(protects, allItemsBySeller);
 router.route("/:itemId/one").get(itemDetails);
 router
   .route("/:itemId")
-  .get(itemDetailsWithInterestedBuyers)
+  .get(protects, itemDetailsWithInterestedBuyers)
   .put(markItemAsSold)
   .delete(deleteItem);
-router.route("/show-interest/:itemId").post(showInterestInItem);
-router.route("/my-interest/:userId").get(trackBuyerInterests);
+router.route("/show-interest/:itemId").post(protects, showInterestInItem);
+router.route("/:userId/:itemId").get(checkInterest);
 module.exports = router;

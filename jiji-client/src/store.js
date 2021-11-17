@@ -10,6 +10,12 @@ import {
   postAdReducer,
   allItemsReducer,
   detailsReducer,
+  sellerItemsReducer,
+  updateItemToSoldReducer,
+  deleteItemReducer,
+  itemInterestedPeopleReducer,
+  myInterestReducer,
+  showInterestReducer,
 } from "./reducers/sell.reducer";
 
 const reducer = combineReducers({
@@ -18,6 +24,12 @@ const reducer = combineReducers({
   postAd: postAdReducer,
   allItems: allItemsReducer,
   detailsInfo: detailsReducer,
+  seller: sellerItemsReducer,
+  markSold: updateItemToSoldReducer,
+  delete: deleteItemReducer,
+  people: itemInterestedPeopleReducer,
+  trackInterest: myInterestReducer,
+  showInterest: showInterestReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

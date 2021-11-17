@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./Modal.css";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import VisibilityIcon from "@material-ui/icons/Visibility";
+
 import { login } from "../../actions/users.action";
 import { Link } from "react-router-dom";
 const LoginModal = () => {
@@ -13,14 +13,6 @@ const LoginModal = () => {
   } = useForm({
     mode: "onChange",
   });
-
-  const [passwordShown, setPasswordShown] = useState(false);
-
-  const handlePasswordVisibility = () => {
-    setPasswordShown(!passwordShown);
-  };
-
-  const eye = <VisibilityIcon />;
 
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
@@ -56,11 +48,8 @@ const LoginModal = () => {
           {...register("password", { required: true })}
           className="reg-input"
           placeholder="Password"
-          type={passwordShown ? "text" : "password"}
+          type="password"
         />
-        <p className="eyecon-login" onClick={handlePasswordVisibility}>
-          {eye}
-        </p>
 
         {errors.password?.type === "required" && (
           <p className="error-message">Password is required </p>

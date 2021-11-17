@@ -69,34 +69,18 @@ const Sell = ({ history }) => {
   const { loading, itemInfo, error } = post;
 
   useEffect(() => {
-    if (itemInfo?.success === true) return (document.location.href = `/adverts`);
+    if (itemInfo?.success === true)
+      return (document.location.href = `/adverts`);
   }, [itemInfo?.success]);
+
+  if(!name || !desc || !image || !price){
+      
+  }
 
   return (
     <>
       <Nav />
       <form className="post-adform" onSubmit={handleSubmit}>
-        <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="reg-input"
-          placeholder="Name of item you want to sell?"
-        />
-        <textarea
-          value={desc}
-          onChange={(e) => setDesc(e.target.value)}
-          className="reg-input"
-          rows="10"
-          cols="10"
-          placeholder="Description"
-        />
-        <input
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          className="reg-input"
-          type="number"
-          placeholder="Price"
-        />
         <input
           style={{ display: "none" }}
           type="file"
@@ -121,9 +105,31 @@ const Sell = ({ history }) => {
             </button>
           )}
         </div>
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="reg-input"
+          placeholder="Name of item you want to sell?"
+        />
+        <textarea
+          value={desc}
+          onChange={(e) => setDesc(e.target.value)}
+          className="reg-input"
+          rows="10"
+          cols="10"
+          placeholder="Description"
+        />
+        <input
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          className="reg-input"
+          type="number"
+          placeholder="Price"
+        />
         <button type="submit" className="reg-btn">
           {loading ? "Loading..." : "POST"}
         </button>
+        {error && <p className="error-message">failed: Please try again</p>}
       </form>
     </>
   );

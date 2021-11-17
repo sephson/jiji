@@ -49,6 +49,10 @@
 .nav-person {
   justify-self: flex-end;
   align-self: center;
+  cursor: pointer;
+  display: flex;
+  gap: 1rem;
+  cursor: pointer;
 }
 
 a {

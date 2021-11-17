@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./Modal.css";
 import { useForm } from "react-hook-form";
-import VisibilityIcon from "@material-ui/icons/Visibility";
 import { useDispatch, useSelector } from "react-redux";
 import { registration } from "../../actions/users.action";
 import { Link } from "react-router-dom";
@@ -14,14 +13,6 @@ const Registration = () => {
   } = useForm({
     mode: "onChange",
   });
-
-  const [passwordShown, setPasswordShown] = useState(false);
-
-  const handlePasswordVisibility = () => {
-    setPasswordShown(!passwordShown);
-  };
-
-  const eye = <VisibilityIcon />;
 
   const dispatch = useDispatch();
   const userRegister = useSelector((state) => state.userRegister);
@@ -66,11 +57,8 @@ const Registration = () => {
           {...register("password", { required: true })}
           className="reg-input"
           placeholder="Password"
-          type={passwordShown ? "text" : "password"}
+          type="password"
         />
-        <p className="eyecon" onClick={handlePasswordVisibility}>
-          {eye}
-        </p>
 
         {errors.password?.type === "required" && (
           <p className="error-message">Password is required </p>
@@ -78,7 +66,6 @@ const Registration = () => {
 
         <input
           name="first_name"
-          autoComplete="off"
           {...register("first_name", { required: true })}
           className="reg-input"
           placeholder="Firstname"
@@ -91,11 +78,11 @@ const Registration = () => {
         <input
           name="last_name"
           type="text"
-          autoComplete="off"
           {...register("last_name", { required: true })}
           className="reg-input"
           placeholder="Lastname"
         />
+
         <select
           name="state_residence"
           {...register("state_residence", { required: true })}

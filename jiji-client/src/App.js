@@ -6,6 +6,8 @@ import LoginModal from "./pages/Regis-Login/Login";
 import Sell from "./pages/Sell/Sell";
 import MyAds from "./pages/MyAdverts/myAdverts";
 import ItemDetail from "./pages/ItemDetails/ItemDetail";
+import People from "./pages/ListOfPeopleInterestedInMyItems/People";
+import Track from "./pages/Track/Track";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path="/post-ad" component={Sell} />
           <Route path="/adverts" component={MyAds} />
           <Route path="/item/:itemId" component={ItemDetail} />
+          <Route path="/interests/:itemId" component={People} />
+          <Route path="/shown-interests" component={Track} />
         </Switch>
       </Router>
     </>

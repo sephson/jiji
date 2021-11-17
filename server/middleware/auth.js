@@ -4,26 +4,27 @@ const ErrorResponse = require("../utils/errorResponse");
 
 exports.protects = async (req, res, next) => {
   let token;
-
   if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
+    req.headers.authorisation &&
+    req.headers.authorisation.startsWith("Bearer")
   ) {
-    token = req.headers.authorization.split(" ")[1];
+    token = req.headers.authorisation.split(" ")[1];
+  }
 
-    if (!token)
-      return next(
-        new ErrorResponse("Not Authorized to access this route", 401)
-      );
+  if (!token) {
+    return next(new ErrorResponse("Not authorized to access this route", 401));
+  }
 
-    try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      const user = await User.findById(decoded.id);
-      if (!user) return next(new ErrorResponse("No user found", 404));
-      req.user = user;
-      next();
-    } catch (error) {
-      return next(new ErrorResponse("Not authorised", 401));
-    }
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET); //jwt has an id, check userModel
+    const user = await User.findById(decoded.id);
+
+    if (!user) return next(new ErrorResponse("user doesnt exist", 404));
+
+    req.user = user;
+    next();
+    // return user;
+  } catch (error) {
+    return next(new ErrorResponse("Not authorized to access this router", 401));
   }
 };

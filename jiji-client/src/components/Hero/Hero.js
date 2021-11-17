@@ -2,7 +2,7 @@ import React from "react";
 import "./Hero.css";
 import man from "../../pic/man.png";
 import women from "../../pic/girls.png";
-// import LocationOnIcon from "@mui/icons-material/LocationOn";
+
 
 const Hero = () => {
   return (

@@ -1,0 +1,23 @@
+.drop-down {
+  color: #378705;
+  top: 3.5rem;
+  position: absolute;
+  z-index: 1;
+  display: grid;
+  gap: 0.5rem;
+  font-weight: bold;
+  background-color: white;
+  padding: 0.5rem 2rem;
+  width: -webkit-fill-available;
+  cursor: pointer;
+}
+
+.xx:hover {
+  color: #65ff04;
+}
+
+@media screen and (max-width: 700px) {
+  .drop-down {
+    padding: 0.5rem 0.7rem;
+  }
+}
