@@ -13,11 +13,10 @@ const {
   deleteItem,
   trackBuyerInterests,
   checkInterest,
-  test,
 } = Item;
-router.route("/testtest").get(test);
+router.route("/testtest").get(allItems);
 router.route("/track").get(protects, trackBuyerInterests);
-router.route("/").post(create).get(allItems);
+router.route("/").post(create);
 router.route("/all-seller-items").get(protects, allItemsBySeller);
 router.route("/:itemId/one").get(itemDetails);
 router
