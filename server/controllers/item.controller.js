@@ -128,13 +128,13 @@ exports.deleteItem = async (req, res) => {
 
 exports.allItems = async (req, res) => {
 
-  res.status(200).json({ success: "Api-test-heroku" });
-  // try {
-  //   const all = await Item.find({ is_sold: false });
-  //   res.status(200).json({ success: true, all });
-  // } catch (error) {
-  //   res.status(500).json({ success: false, error });
-  // }
+  // res.status(200).json({ success: "Api-test-heroku" });
+  try {
+    const all = await Item.find({ is_sold: false });
+    res.status(200).json({ success: true, all });
+  } catch (error) {
+    res.status(500).json({ success: false, error });
+  }
 };
 
 exports.trackBuyerInterests = async (req, res) => {
