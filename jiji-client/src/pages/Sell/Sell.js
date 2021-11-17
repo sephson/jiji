@@ -40,6 +40,7 @@ const Sell = ({ history }) => {
       };
 
       const { data } = await axios.post("/api/upload", formData, config);
+      console.log(data);
       setImage(data);
     } catch (err) {
       console.log(err);
