@@ -56,7 +56,6 @@ const MyAdverts = () => {
               "margin-bottom": "1rem",
               "font-weight": "bold",
               color: "grey",
-              
             }}
           >
             {userInfo?.first_name} {userInfo?.last_name}
@@ -67,6 +66,9 @@ const MyAdverts = () => {
             }}
           >
             {myAds?.seller?.total} Items
+          </p>
+          <p>
+            <Link to="/post-ad">Post Advert</Link>
           </p>
         </div>
         <div>

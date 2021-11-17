@@ -4,6 +4,7 @@ exports.uploadImages = async (req, res) => {
   const { image } = req.files;
   try {
     const result = await cloudinaryUpload(image.tempFilePath);
+    console.log(image.tempFilePath);
     res.status(200).json(result);
   } catch (error) {
     res.status(500).json(error);
