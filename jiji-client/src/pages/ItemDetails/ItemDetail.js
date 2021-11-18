@@ -75,7 +75,10 @@ const ItemDetail = () => {
             )}
           </div>
           <div className="details-seller-info">
-            <h3>Disu Joseph</h3>
+            <h3>
+              {details?.item.sellerId.first_name}
+              {details?.item.sellerId.last_name}
+            </h3>
             <p>{details?.item.sellerId.email}</p>
           </div>
           <div className="details-seller-info">
